@@ -1,5 +1,6 @@
 import React from 'react';
 import SendMessageForm from './SendMessageForm';
+import Message from './Message';
 
 class ChatWindow extends React.Component {
 
@@ -11,14 +12,7 @@ class ChatWindow extends React.Component {
 
             <ul className="message-list">
               {this.props.messages.map((message, index) => (
-                <li
-                  key={index}
-                  className={
-                    message.username === this.props.user.username ? 'message sender' : 'message recipient'
-                  }
-                >
-                  <p>{`${message.username}: ${message.text}`}</p>
-                </li>
+                <Message index={index} message={message} username={this.props.user.username}/>
               ))}
             </ul>
 
