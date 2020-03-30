@@ -18,13 +18,6 @@ const messages = [
 ];
 
 class App extends Component {
-  /*
-  If the user did not type anything, he/she should not be
-  allowed to submit.
-  */
-  isDisabled = () => {
-    return false;
-  };
 
   render() {
     return (
@@ -34,35 +27,10 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-    		<ChatWindow user={users[0]} messages={messages}/>
-          <div className="chat-window">
-            <h2>Super Awesome Chat</h2>
-            <div className="name sender">{users[1].username}</div>
-            <ul className="message-list">
-              {messages.map((message, index) => (
-                <li
-                  key={index}
-                  className={
-                    message.username === users[1].username ? 'message sender' : 'message recipient'
-                  }
-                >
-                  <p>{`${message.username}: ${message.text}`}</p>
-                </li>
-              ))}
-            </ul>
-
-            <div>
-              <form className="input-group">
-                <input type="text" className="form-control" placeholder="Enter your message..." />
-                <div className="input-group-append">
-                  <button className="btn submit-button" disabled={this.isDisabled()}>
-                    SEND
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+			{users.map((user) =>(
+              <ChatWindow user={user} messages={messages}/>
+            ))}
+		</div>
       </div>
     );
   }
