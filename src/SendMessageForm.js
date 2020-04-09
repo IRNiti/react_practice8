@@ -1,18 +1,38 @@
 import React from 'react';
 
 class SendMessageForm extends React.Component {
+  
+  state = {
+    newMessage : ''
+  }
   /*
   If the user did not type anything, he/she should not be
   allowed to submit.
   */
   isDisabled = () => {
-    return false;
+    if(this.state.newMessage === ''){
+      return true;
+    } else {
+      return false;
+    }
   };
+
+  handleMessageInput = (message) => {
+    this.setState(() => ({
+      newMessage : message
+    }))
+  }
 
   render(){
     return(
       <form className="input-group">
-        <input type="text" className="form-control" placeholder="Enter your message..." />
+        <input 
+       		type="text" 
+       		className="form-control" 
+       		placeholder="Enter your message..."
+       		value={this.state.newMessage}
+      		onChange={(event) => this.handleMessageInput(event.target.value)}
+      />
           <div className="input-group-append">
             <button className="btn submit-button" disabled={this.isDisabled()}>
               SEND
