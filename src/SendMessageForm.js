@@ -23,6 +23,11 @@ class SendMessageForm extends React.Component {
     }))
   }
 
+  sendMessage = (event) =>{
+    event.preventDefault();
+    this.props.sendMessage(this.state.newMessage);
+  }
+
   render(){
     return(
       <form className="input-group">
@@ -34,8 +39,11 @@ class SendMessageForm extends React.Component {
       		onChange={(event) => this.handleMessageInput(event.target.value)}
       />
           <div className="input-group-append">
-            <button className="btn submit-button" disabled={this.isDisabled()}>
-              SEND
+            <button 
+				className="btn submit-button" 
+				disabled={this.isDisabled()} 
+				onClick={this.sendMessage}>
+              		SEND
             </button>
           </div>
       </form>

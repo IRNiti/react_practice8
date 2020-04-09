@@ -3,6 +3,11 @@ import SendMessageForm from './SendMessageForm';
 import Message from './Message';
 
 class ChatWindow extends React.Component {
+  
+  handleNewMessage = (message) => {
+    const newMessage = { username: this.props.user.username, text: message };
+    return this.props.handleSendMessage(newMessage);
+  }
 
   render(){
     return(
@@ -17,7 +22,7 @@ class ChatWindow extends React.Component {
             </ul>
 
             <div>
-              <SendMessageForm />
+              <SendMessageForm sendMessage={this.handleNewMessage}/>
             </div>
           </div>
     )

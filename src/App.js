@@ -11,13 +11,21 @@ The instructions are included in the `instructions.md` file.
 
 const users = [{ username: 'Amy' }, { username: 'John' }];
 
-const messages = [
-  { username: 'Amy', text: 'Hi, Jon!' },
-  { username: 'Amy', text: 'How are you?' },
-  { username: 'John', text: 'Hi, Amy! Good, you?' },
-];
-
 class App extends Component {
+  
+  state = {
+  	messages : [
+  		{ username: 'Amy', text: 'Hi, Jon!' },
+  		{ username: 'Amy', text: 'How are you?' },
+  		{ username: 'John', text: 'Hi, Amy! Good, you?' },
+  	]
+  }
+
+  addMessage = (message) => {
+    this.setState((prevState) =>({
+      messages : [...prevState.messages, message]
+    }))
+  }
 
   render() {
     return (
@@ -28,7 +36,7 @@ class App extends Component {
         </header>
         <div className="container">
 			{users.map((user) =>(
-              <ChatWindow user={user} messages={messages}/>
+              <ChatWindow user={user} messages={this.state.messages} handleSendMessage={this.addMessage}/>
             ))}
 		</div>
       </div>
